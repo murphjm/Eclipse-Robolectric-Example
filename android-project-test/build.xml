@@ -7,9 +7,10 @@
 	
 	<property name="libs.dir" value="./libs/"/>
 	<property name="build.dir" value="./build/"/>
+	<property name="android.project.classpath" value="../android-project/bin/classes/"/>
 	<property name="test.report.dir" value="./test-reports/"/>
 	<property name="test.html.dir" value="./test-report-html/"/>
-	<property name="source.dir" value="./src/"/>
+	<property name="source.dir" value="./src/"/>	
 
 	<filelist id="android_jars" dir="${libs.dir}">
 		<file name="android.jar"/>
@@ -25,17 +26,18 @@
 	<path id="compile_classpath">
 		<filelist refid="libs_jars"/>
 		<filelist refid="android_jars"/>
-		<pathelement path="../android-project/bin/classes/"/>
-		<pathelement path="./build/"/>
+		<pathelement path="${android.project.classpath}"/>
+		<pathelement path="${build.dir}"/>
 	</path>
 
 	<path id="junit_classpath">
 		<pathelement path="${build.dir}"/>
-		<pathelement path="../android-project/bin/classes/"/>
-		<!-- NOTE: junit.jar must come before android.jar -->
+		<pathelement path="${android.project.classpath}"/>
+		<!-- NOTE: junit.jar must come before android.jar! -->
 		<filelist refid="libs_jars"/>
 		<filelist refid="android_jars"/>
 	</path>
+	
 	<!-- targets -->
 
 	<target name="init">
@@ -45,14 +47,12 @@
 	</target>
 
 	<target name="compile" depends="init" description="compile test source">
-		<!--<echo message="sdk home = ${env.ANDROID_SDK_HOME}"/>-->
-
 		<javac srcdir="${source.dir}" destdir="${build.dir}" debug="true" >
 			<classpath refid="compile_classpath" />
 		</javac>
 	</target>
 
-	<target name="test-run" depends="compile" description="run JUnit tests">
+	<target name="test-run" depends="compile" description="Run JUnit tests">
 		<mkdir dir="${test.report.dir}"/>
 		<echo message="Running JUnit Tests in directory ${source.dir}..."/>
 		<junit showoutput="true" printsummary="yes" failureproperty="junit.failure" fork="yes" forkmode="once" maxmemory="512m">
@@ -65,10 +65,10 @@
 			</batchtest>
 			<classpath refid="junit_classpath"/>
 		</junit>
-		<fail if="junit.failure" message="Unit test(s) failed.  See reports!"/>
+		<fail if="junit.failure" message="Unit test(s) failed. See reports!"/>
 	</target>
 
-	<target name="test-report-junit" depends="test-run" description="generate JUnit HTML reports">
+	<target name="test-report-junit" depends="test-run" description="Generate JUnit HTML reports">
 		<mkdir dir="${test.html.dir}"/>
 		<junitreport todir="${test.report.dir}">
 			<fileset dir="${test.report.dir}" includes="TEST-*.xml"/>
@@ -76,7 +76,7 @@
 		</junitreport>	
 	</target>
 
-	<target name="clean" description="clean up" >
+	<target name="clean" description="Clean Up" >
 		<delete dir="${build.dir}"/>
 		<delete dir="${test.report.dir}"/>
 		<delete dir="${test.html.dir}"/>
