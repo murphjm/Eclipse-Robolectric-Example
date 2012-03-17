@@ -1,6 +1,6 @@
 <project name="AndroidProjectTest" default="test-report-junit" basedir=".">
 	<description>
-		Andrioid-Project-Test - JUnit Tests for HotelTonight Android Application
+		Android-Project-Test - Robolectric Tests for Android Application
 	</description>
 
 	<!-- set global properties for this build -->
