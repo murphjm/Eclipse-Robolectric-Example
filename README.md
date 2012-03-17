@@ -1,4 +1,4 @@
-## Eclipse-Robolectric-Sample, a pre-configured Android and Robolectric example
+## Eclipse-Robolectric-Sample, a pre-configured Robolectric example
 
 Web Site: [Public Static Droid Main](http://publicstaticdroidmain.com/)
 
