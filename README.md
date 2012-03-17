@@ -1,10 +1,9 @@
 ## Eclipse-Robolectric-Sample, a pre-configured Robolectric example
   
+  
 
 My blog: [Public Static Droid Main](http://publicstaticdroidmain.com/)  
-
 Robolectric website: [Robolectric](http://pivotal.github.com/robolectric/)  
-
 Michael Portuesi: [Digital Dumptruck](http://digitaldumptruck.jotabout.com/)  
 
 
