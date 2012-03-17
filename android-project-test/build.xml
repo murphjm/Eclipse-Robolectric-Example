@@ -1,0 +1,85 @@
+<project name="AndroidProjectTest" default="test-report-junit" basedir=".">
+	<description>
+		Andrioid-Project-Test - JUnit Tests for HotelTonight Android Application
+	</description>
+
+	<!-- set global properties for this build -->
+	
+	<property name="libs.dir" value="./libs/"/>
+	<property name="build.dir" value="./build/"/>
+	<property name="test.report.dir" value="./test-reports/"/>
+	<property name="test.html.dir" value="./test-report-html/"/>
+	<property name="source.dir" value="./src/"/>
+
+	<filelist id="android_jars" dir="${libs.dir}">
+		<file name="android.jar"/>
+		<file name="maps.jar"/>
+	</filelist>
+
+	<filelist id="libs_jars" dir="${libs.dir}">
+		<file name="junit.jar"/>
+		<file name="hamcrest.jar"/>
+		<file name="robolectric-with-dependencies.jar"/>
+	</filelist>
+
+	<path id="compile_classpath">
+		<filelist refid="libs_jars"/>
+		<filelist refid="android_jars"/>
+		<pathelement path="../android-project/bin/classes/"/>
+		<pathelement path="./build/"/>
+	</path>
+
+	<path id="junit_classpath">
+		<pathelement path="${build.dir}"/>
+		<pathelement path="../android-project/bin/classes/"/>
+		<!-- NOTE: junit.jar must come before android.jar -->
+		<filelist refid="libs_jars"/>
+		<filelist refid="android_jars"/>
+	</path>
+	<!-- targets -->
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<mkdir dir="${build.dir}"/>
+	</target>
+
+	<target name="compile" depends="init" description="compile test source">
+		<!--<echo message="sdk home = ${env.ANDROID_SDK_HOME}"/>-->
+
+		<javac srcdir="${source.dir}" destdir="${build.dir}" debug="true" >
+			<classpath refid="compile_classpath" />
+		</javac>
+	</target>
+
+	<target name="test-run" depends="compile" description="run JUnit tests">
+		<mkdir dir="${test.report.dir}"/>
+		<echo message="Running JUnit Tests in directory ${source.dir}..."/>
+		<junit showoutput="true" printsummary="yes" failureproperty="junit.failure" fork="yes" forkmode="once" maxmemory="512m">
+			<formatter type="plain"/>
+			<formatter type="xml"/>
+			<batchtest todir="${test.report.dir}">
+				<fileset dir="${source.dir}">
+					<include name="**/*Test.java"/>
+				</fileset>
+			</batchtest>
+			<classpath refid="junit_classpath"/>
+		</junit>
+		<fail if="junit.failure" message="Unit test(s) failed.  See reports!"/>
+	</target>
+
+	<target name="test-report-junit" depends="test-run" description="generate JUnit HTML reports">
+		<mkdir dir="${test.html.dir}"/>
+		<junitreport todir="${test.report.dir}">
+			<fileset dir="${test.report.dir}" includes="TEST-*.xml"/>
+			<report format="frames" todir="${test.html.dir}"/>
+		</junitreport>	
+	</target>
+
+	<target name="clean" description="clean up" >
+		<delete dir="${build.dir}"/>
+		<delete dir="${test.report.dir}"/>
+		<delete dir="${test.html.dir}"/>
+		<delete file="${basedir}/tmp/cached-robolectric-classes.jar"/>
+	</target>
+</project>
