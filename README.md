@@ -1,7 +1,7 @@
 ## Eclipse-Robolectric-Sample, a pre-configured Robolectric example  
   
 
-Michael Portuesi's Blog: [Digital Dumptruck](http://digitaldumptruck.jotabout.com/)  
+Michael Portuesi's blog: [Digital Dumptruck](http://digitaldumptruck.jotabout.com/)  
 Robolectric website: [Robolectric](http://pivotal.github.com/robolectric/)  
 My blog: [Public Static Droid Main](http://publicstaticdroidmain.com/)
 ## What is this?
@@ -34,3 +34,4 @@ Finally, make sure junit.jar is defined in your Ant script’s classpath BEFORE 
     <filelist refid="libs_jars"/>
     <filelist refid="android_jars"/>
 </path>
+'''
