@@ -26,7 +26,7 @@ public class SampleTest {
 </pre>
   
 Finally, make sure junit.jar is defined in your Ant script’s classpath BEFORE android.jar, otherwise Ant will throw an error:  
-'''
+<tt>
 <path id="junit_classpath">
     <pathelement path="${build.dir}"/>
     <pathelement path="${android.project.classpath}"/>
@@ -34,4 +34,4 @@ Finally, make sure junit.jar is defined in your Ant script’s classpath BEFORE 
     <filelist refid="libs_jars"/>
     <filelist refid="android_jars"/>
 </path>
-'''
+</tt>
