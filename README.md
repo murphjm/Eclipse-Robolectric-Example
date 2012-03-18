@@ -26,12 +26,12 @@ public class SampleTest {
 </pre>
   
 Finally, make sure junit.jar is defined in your Ant script’s classpath BEFORE android.jar, otherwise Ant will throw an error:  
-<tt>
-<path id="junit_classpath">
-    <pathelement path="${build.dir}"/>
-    <pathelement path="${android.project.classpath}"/>
-    <!-- NOTE: junit.jar must come before android.jar! -->
-    <filelist refid="libs_jars"/>
-    <filelist refid="android_jars"/>
-</path>
-</tt>
+<pre>
+&lt;path id=&quot;junit_classpath&quot;&gt;
+    &lt;pathelement path=&quot;${build.dir}&quot;/&gt;
+    &lt;pathelement path=&quot;${android.project.classpath}&quot;/&gt;
+    &lt;!-- NOTE: junit.jar must come before android.jar! --&gt;
+    &lt;filelist refid=&quot;libs_jars&quot;/&gt;
+    &lt;filelist refid=&quot;android_jars&quot;/&gt;
+&lt;/path&gt;
+</pre>
