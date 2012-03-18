@@ -1,5 +1,6 @@
 ## Eclipse-Robolectric-Sample, a pre-configured Robolectric example  
   
+&nbsp;  
 
 Michael Portuesi's blog: [Digital Dumptruck](http://digitaldumptruck.jotabout.com/)  
 Robolectric website: [Robolectric](http://pivotal.github.com/robolectric/)  
