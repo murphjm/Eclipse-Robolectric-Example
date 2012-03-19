@@ -1,6 +1,6 @@
 ## Eclipse-Robolectric-Sample, a pre-configured Robolectric example  
 &nbsp;  
-Blog: [Public Static Droid Main](http://publicstaticdroidmain.com/)
+Blog: [Public Static Droid Main](http://publicstaticdroidmain.com/2012/03/robolectric-ant-project-eclipse/)
 ## What is this?
 This is a pre-configured boilerplate project to help people configure Robolectric in Eclipse and Ant without the use of Maven. [Michael Portuesi](http://digitaldumptruck.jotabout.com/) recently helped me sort this out and I decided to share it to help other people get started. 
 
