@@ -8,6 +8,5 @@
 	<classpathentry kind="lib" path="libs/junit.jar"/>
 	<classpathentry kind="lib" path="libs/maps.jar"/>
 	<classpathentry kind="lib" path="libs/robolectric-with-dependencies.jar"/>
-	<classpathentry kind="var" path="CLASSPATH"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
